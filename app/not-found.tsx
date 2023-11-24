@@ -2,7 +2,7 @@
 export default function Error() {
   return (
     <main>
-      Not found
+      The page you tried to navigate to doesn't exist...
     </main>
   )
 }

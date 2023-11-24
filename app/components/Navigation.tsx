@@ -7,15 +7,14 @@ export function Navigation() {
                 {process.env.siteName}
             </a>
 
-
-            <div className="grow"></div>
+            {/* <div className="grow"></div>
 
             <button className="group hidden sm:block text-slate-600 hover:text-current">
                 <span className="group-hover:underline">Search</span>
                 &nbsp;&#x1F50D;
             </button>
 
-            <button className="text-2xl sm:hidden">&#x1F50D;</button>
+            <button className="text-2xl sm:hidden">&#x1F50D;</button> */}
         </header>
     )
 }

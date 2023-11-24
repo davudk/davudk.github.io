@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
-import { Shantell_Sans } from 'next/font/google'
 import './globals.scss'
 import 'prismjs/themes/prism-tomorrow.min.css';
+
 import { Navigation } from './components/Navigation'
 import { Footer } from './components/Footer'
-
-const inter = Shantell_Sans({ subsets: ['latin'], display: 'swap', adjustFontFallback: false })
 
 export const metadata: Metadata = {
   title: 'Davud\'s blog',
@@ -18,13 +16,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.className}>
-      <body className="max-w-2xl mx-auto px-3 md:px-0 py-2">
-        <Navigation />
-        <main>
-          {children}
-        </main>
-        <Footer />
+    <html lang="en">
+      <body >
+        <div className="max-w-2xl min-h-screen mx-auto px-3 md:px-0 py-2 flex flex-col">
+          <Navigation />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   )
