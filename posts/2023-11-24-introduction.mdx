@@ -1,0 +1,96 @@
+import { PostHeader } from 'app/components/PostHeader';
+
+export const title = 'Introduction';
+export const tags = ['foo', 'abc', '123'];
+export const excerpt = 'Some info about myself';
+export const featureImage = 'https://static.ghost.org/v4.0.0/images/feature-image.jpg';
+
+Generate Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover plugins for your favorite writing, design and blogging tools. Explore the origins, history and meaning of the famous passage, and learn how Lorem Ipsum went
+
+This is Davud's blog, a brand new site by Davud Kaplan that's just getting started. Things will be up and running here shortly, but you can subscribe in the meantime if you'd like to stay up to date and receive emails when new content is published!
+
+JSON example:
+
+```json
+{
+  "arr": [1, 2, 3],
+  "obj": { "str": "some string" }
+}
+```
+
+HTML example:
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+</body>
+</html>
+```
+
+Python example:
+
+```python
+# Sum of natural numbers up to num
+
+num = 16
+
+if num < 0:
+   print("Enter a positive number")
+else:
+   sum = 0
+   # use while loop to iterate until zero
+   while(num > 0):
+       sum += num
+       num -= 1
+   print("The sum is", sum)
+```
+
+
+Java example:
+
+```java
+public class Armstrong {
+
+    public static void main(String[] args) {
+
+        int low = 999, high = 99999;
+
+        for(int number = low + 1; number < high; ++number) {
+
+            if (checkArmstrong(number))
+                System.out.print(number + " ");
+        }
+    }
+
+    public static boolean checkArmstrong(int num) {
+        int digits = 0;
+        int result = 0;
+        int originalNumber = num;
+
+        // number of digits calculation
+        while (originalNumber != 0) {
+            originalNumber /= 10;
+            ++digits;
+        }
+
+        originalNumber = num;
+
+        // result contains sum of nth power of its digits
+        while (originalNumber != 0) {
+            int remainder = originalNumber % 10;
+            result += Math.pow(remainder, digits);
+            originalNumber /= 10;
+        }
+
+        if (result == num)
+            return true;
+
+        return false;
+    }
+}
+```

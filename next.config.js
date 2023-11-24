@@ -1,6 +1,16 @@
+const withMDX = require('@next/mdx')({
+    options: {
+        remarkPlugins: [require('remark-prism')],
+    }
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export'
+    env: {
+        siteName: 'Davud\'s blog'
+    },
+    output: 'export',
+    pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 }
 
-module.exports = nextConfig
+module.exports = withMDX(nextConfig)
