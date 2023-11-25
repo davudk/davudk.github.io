@@ -5,7 +5,7 @@ import 'prismjs/themes/prism-tomorrow.min.css';
 
 import { Navigation } from './components/Navigation'
 import { Footer } from './components/Footer'
-import { Posts } from '@/app/posts';
+import { Posts } from '@/posts';
 
 export const metadata: Metadata = {
   title: 'Davud\'s blog',

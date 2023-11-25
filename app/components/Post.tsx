@@ -1,4 +1,4 @@
-import { PostsBySlug } from "@/app/posts";
+import { PostsBySlug } from "@/posts";
 import { PostHeader } from "./PostHeader";
 
 export function Post(props: { slug: string }) {

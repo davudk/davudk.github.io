@@ -1,5 +1,5 @@
 import { PostList } from '@/app/components/PostList';
-import { Posts } from '@/app/posts';
+import { Posts } from '@/posts';
 
 export async function generateStaticParams() {
     const tags = new Set<string>();

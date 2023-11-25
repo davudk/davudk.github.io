@@ -1,4 +1,4 @@
-import { Post } from "@/app/posts";
+import { Post } from "@/posts";
 import Link from "next/link";
 
 export interface PostHeaderProps {
@@ -26,19 +26,6 @@ export function PostHeader(props: PostHeaderProps) {
             )}
 
         </header>
-        // <header className="mb-4 flex flex-col gap-y-2">
-        //     <h1 className="text-4xl">{title}</h1>
-
-        //     <div className="text-sm text-slate-600">
-        //         {(tags ?? []).map(tag => <div>{tag}</div>)}
-        //         <time dateTime={published}>{published}</time>
-        //     </div>
-
-        //     {excerpt && (
-        //         <p className="text-slate-800">{excerpt}</p>
-        //     )}
-
-        // </header>
     )
 }
 
@@ -59,11 +46,4 @@ function Tags(props: { tags?: string[] }) {
             &nbsp;&bull;&nbsp;
         </>
     )
-    // {!!(tags ?? []).length && (
-    //     <>
-    //         Tagged in: 
-    //         {tags?.map(t => <span>{t}, </span>)}
-    //     </>
-    // )}
-    // {(tags ?? []).map(tag => <span>{tag}</span>)}
 }
