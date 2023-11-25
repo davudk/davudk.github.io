@@ -1,0 +1,46 @@
+import { CircleCountingGame } from './CircleCountingGame.tsx';
+
+export const metadata = {
+    slug: 'childrens-math-education',
+    title: 'Regarding children\'s math education',
+    tags: ['Education'],
+    excerpt: 'My attemps at improving my nephew\'s speed at math.',
+    publishedDate: '2023-11-25',
+    featureImage: {
+        src: 'https://images.unsplash.com/photo-1518133835878-5a93cc3f89e5?q=80&w=1920&h=1080&auto=format&fit=crop',
+        alt: 'Introduction (photo not relevant)'
+    },
+    doNotIndex: true
+};
+
+<PostHeader post={metadata} />
+
+I recently came across a video titled [This simple game makes kids better at math](https://www.youtube.com/watch?v=LFR3J9KQsNo)
+by Johns Hopkins University.
+In the video, the children play a simple game where each round they're presented with two bunches of circles.
+
+Yellow and blue circles are placed on opposite sides of the screen.
+The quantity, size and placement of the circles are randomized.
+
+The circles are only visible for about 1-2 seconds before they disappear.
+The child must the determine which side (yellow or blue) has more circles based on a quick glance.
+
+![A child plays the game created by Johns Hopkins University.](2023-11-25-childrens-math-education/kid-plays-game.jpg)
+
+When I saw this video, I knew I wanted to try this on my nephew.
+
+Since my end goal is to improve the speed at which he can solve simple addition and subtraction problems,
+I decided that I would take the following steps:
+
+1. Improve his counting speed by having him count randomized bunches of circles.
+2. Introduce a time limit per round in which the circles are visible and gradually decrease this as he progresses.
+3. Introduce a second batch of circles and have him determine which batch is greater in count.
+
+I thought of adding other variables as well, such as introducing other shapes which need to be ignored.
+I figured this would improve his ability to select and count the right shapes, but I decided to keep it simple for now.
+
+---
+
+## Step 1: Just counting randomized bunches of circles
+
+<CircleCountingGame />

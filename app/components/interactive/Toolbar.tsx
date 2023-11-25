@@ -1,7 +1,10 @@
 'use client';
-
 import { ReactNode, useCallback, useContext, useEffect, useState } from "react";
+import { Listbox } from '@headlessui/react'
 import { InteractiveContext } from "./Interactive";
+import classnames from "classnames";
+import classNames from "classnames";
+import { useHotkeys } from "react-hotkeys-hook";
 
 export interface ToolbarProps {
     children?: ReactNode;
@@ -25,39 +28,141 @@ Toolbar.Title = function ToolbarTitle(props: ToolbarTitleProps) {
     return (<div className="text-lg">{children}</div>)
 }
 
-Toolbar.Gap = function ToolbarGap() {
-    return (<div className="grow" />)
+export interface ToolbarTextProps {
+    children: ReactNode;
+}
+
+Toolbar.Text = function ToolbarText(props: ToolbarTextProps) {
+    const { children } = props;
+    return (<div>{children}</div>)
+}
+
+export interface ToolbarGapProps {
+    grow?: boolean;
+}
+
+Toolbar.Gap = function ToolbarGap(props: ToolbarGapProps) {
+    const { grow } = props;
+    return (<div className={classnames(grow ? 'grow' : 'w-4')} />)
+}
+
+export interface ToolbarSelectOption {
+    value: string;
+    text?: string;
+    disabled?: boolean;
+}
+
+export interface ToolbarSelectProps {
+    options: ToolbarSelectOption[];
+    disabled?: boolean;
+    value?: string;
+    onChange(value: string): void;
+}
+
+Toolbar.Select = function ToolbarSelect(props: ToolbarSelectProps) {
+    const { options, disabled, value, onChange } = props;
+
+    const selected = options.find(x => x.value === value);
+
+    return (
+        <div className="relative">
+            <Listbox
+                disabled={disabled} value={value} onChange={onChange}>
+                <Listbox.Button className="px-2 shadow-sm outline-none bg-white dark:bg-black">
+                    {selected?.text ?? selected?.value ?? 'None selected'}
+                </Listbox.Button>
+                <Listbox.Options className="absolute top-full left-0 w-32 m-0 p-0 list-none shadow outline-none bg-white dark:bg-black">
+                    {options.map((x) => (
+                        <Listbox.Option className="m-0 p-0"
+                            key={x.value}
+                            value={x.value}
+                            disabled={x.disabled}
+                        >
+                            {({ active }) => (
+                                <div className={classNames("px-2 py-1 cursor-pointer", {
+                                    "bg-slate-100 dark:bg-white/10 outline-dashed outline-2 outline-slate-600 dark:outline-white/40": active
+                                })}>
+                                    {x.text ?? x.value}
+                                </div>
+                            )}
+                        </Listbox.Option>
+                    ))}
+                </Listbox.Options>
+            </Listbox>
+        </div>
+    )
 }
 
 export interface ToolbarButtonProps {
     children: ReactNode;
     disabled?: boolean;
-    onClick(): void;
+    keyboardShortcut?: string;
+    onClick(source: 'click' | 'keyboard-shortcut'): void;
 }
 
 Toolbar.Button = function ToolbarButton(props: ToolbarButtonProps) {
-    const { children, disabled, onClick } = props;
+    const { children, disabled, keyboardShortcut, onClick } = props;
+
+    useHotkeys([keyboardShortcut!].filter(Boolean), e => {
+        e.preventDefault();
+        onClick('keyboard-shortcut');
+    }, {
+        enabled: true
+    }, [keyboardShortcut, onClick]);
 
     return (
         <button className="w-8 block text-lg font-bold enabled:hover:bg-black/10 aspect-square rounded-full"
             disabled={disabled}
-            onClick={() => onClick()}>
+            onClick={() => onClick('click')}>
             {children}
         </button>
     )
 }
 
+export interface ToolbarResetButtonProps {
+    disabled?: boolean;
+    keyboardShortcut?: true | string;
+}
+
+Toolbar.ResetButton = function ToolbarResetButton(props: ToolbarResetButtonProps) {
+    const { disabled } = props;
+    const ctx = useContext(InteractiveContext);
+
+    const keyboardShortcut = props.keyboardShortcut === true
+        ? 'space'
+        : props.keyboardShortcut;
+
+    return (
+        <Toolbar.Button disabled={disabled}
+            keyboardShortcut={keyboardShortcut}
+            onClick={() => ctx.reset()}>
+            &#8635;
+        </Toolbar.Button>
+    )
+}
+
 export interface ToolbarFullscreenButtonProps {
     disabled?: boolean;
+    keyboardShortcut?: true | string;
 }
 
 Toolbar.FullscreenButton = function ToolbarFullscreenButton(props: ToolbarFullscreenButtonProps) {
     const { disabled } = props;
     const ctx = useContext(InteractiveContext);
 
+    const keyboardShortcut = props.keyboardShortcut === true
+        ? 'esc'
+        : props.keyboardShortcut;
+
     return (
         <Toolbar.Button disabled={disabled}
-            onClick={() => ctx.toggleFullscreen()}>&#x26F6;</Toolbar.Button>
+            keyboardShortcut={keyboardShortcut}
+            onClick={type => {
+                if (type === 'keyboard-shortcut') ctx.toggleFullscreen(false);
+                else ctx.toggleFullscreen();
+            }}>
+            &#x26F6;
+        </Toolbar.Button>
     )
 }
 
@@ -78,6 +183,7 @@ Toolbar.PlayPauseButton = function ToolbarPlayPauseButton(props: ToolbarPlayPaus
 }
 
 export interface ToolbarSliderProps {
+    className?: string;
     min?: number;
     max: number;
     value?: number;
@@ -85,7 +191,7 @@ export interface ToolbarSliderProps {
 }
 
 Toolbar.Slider = function ToolbarSlider(props: ToolbarSliderProps) {
-    const { max, onChange } = props;
+    const { className, max, onChange } = props;
 
     const min = props.min ?? 0;
     if (max < min) throw new Error('invalid properties specified to toolbar slider');
@@ -112,16 +218,16 @@ Toolbar.Slider = function ToolbarSlider(props: ToolbarSliderProps) {
     const maxStr = max.toString().padStart(charLength, ' ');
     const text = min === 0
         ? `${valueStr}/${maxStr}`
-        : `${valueStr} [${minStr}, ${maxStr}]`
+        : `${valueStr} in [${min}, ${max}]`
 
     return (
-        <>
+        <div className={classnames('flex items-center gap-x-2', className)}>
             <input type="range"
-                className="ml-2 grow"
+                className="grow"
                 min={min} max={max} value={value}
                 onChange={e => assignValue(e.target.valueAsNumber)} />
-            <span className="mr-2 font-mono">{text}</span>
-        </>
+            <span className="font-mono">{text}</span>
+        </div>
     )
 }
 

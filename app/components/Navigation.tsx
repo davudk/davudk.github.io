@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook";
-import { Post } from "@/posts";
+import { Post } from "@/app/posts";
 import { Search } from "./Search";
 import Link from "next/link";
 

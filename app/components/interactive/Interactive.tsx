@@ -51,11 +51,6 @@ export function Interactive(props: InteractiveProps) {
         toggleFullscreen
     };
 
-    useHotkeys('esc', e => {
-        e.preventDefault();
-        setFullscreen(false);
-    }, []);
-
     useEffect(() => {
         const html = document.documentElement;
         if (fullscreen) html.classList.add('lock-scroll');

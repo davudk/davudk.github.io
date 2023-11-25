@@ -2,8 +2,9 @@
 import { useCallback, useMemo, useState } from "react"
 import { Dialog, Combobox } from '@headlessui/react'
 import { performSearch } from "../util/search";
-import { Post } from "@/posts";
+import { Post } from "@/app/posts";
 import { useRouter } from "next/navigation";
+import classNames from "classnames";
 
 export interface SearchProps {
     posts: Post[];
@@ -46,7 +47,7 @@ export function Search(props: SearchProps) {
                             {searchResults.map(p => (
                                 <Combobox.Option key={p.slug} value={p.slug}>
                                     {({ active }) => (
-                                        <div className={active ? 'bg-slate-100 dark:bg-white/10 outline-dashed outline-2 outline-slate-600 dark:outline-white/40' : ''}>
+                                        <div className={classNames({ "bg-slate-100 dark:bg-white/10 outline-dashed outline-2 outline-slate-600 dark:outline-white/40": active })}>
                                             <div className="group px-4 py-2 cursor-pointer">
                                                 <div className="group-hover:underline truncate">{p.title}</div>
                                                 {p.excerpt && (

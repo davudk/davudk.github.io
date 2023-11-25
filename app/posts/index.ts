@@ -1,4 +1,7 @@
-import * as introduction from './2023-11-24-introduction.mdx';
+import * as introduction from './2023-11-24-introduction/article.mdx';
+import * as childrenMathEducation from './2023-11-25-childrens-math-education/article.mdx';
+
+import * as playground from './playground.mdx';
 
 export interface Post {
     Component?: (props: any) => JSX.Element;
@@ -16,7 +19,9 @@ export interface Post {
 }
 
 const entries = [
-    introduction
+    playground,
+    introduction,
+    childrenMathEducation
 ].map(raw => {
     const { default: Component, metadata } = raw as any;
     const post = { Component, ...metadata } as Post;

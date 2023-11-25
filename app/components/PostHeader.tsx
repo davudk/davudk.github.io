@@ -1,4 +1,4 @@
-import { Post } from "@/posts";
+import { Post } from "@/app/posts";
 import Link from "next/link";
 
 export interface PostHeaderProps {

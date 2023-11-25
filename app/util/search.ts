@@ -1,4 +1,4 @@
-import { Post } from '@/posts';
+import { Post } from '@/app/posts';
 import Fuse from 'fuse.js'
 
 export function performSearch(posts: Post[], q: string, limit = 6) {

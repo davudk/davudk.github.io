@@ -1,4 +1,4 @@
-import { Posts } from '@/posts';
+import { Posts } from '@/app/posts';
 import { Post } from '../components/Post';
 
 export async function generateStaticParams() {
