@@ -7,7 +7,9 @@ export interface PostListProps {
 }
 
 export function PostList(props: PostListProps) {
-    const { posts, tag } = props;
+    const { posts: providedPosts, tag } = props;
+
+    const posts = providedPosts.filter(p => !p.doNotIndex);
 
     if (posts.length === 0) {
         return (

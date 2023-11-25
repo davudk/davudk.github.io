@@ -12,6 +12,7 @@ export interface Post {
         src: string;
         alt?: string;
     };
+    doNotIndex?: boolean;
 }
 
 const entries = [

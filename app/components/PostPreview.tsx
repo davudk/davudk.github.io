@@ -6,7 +6,7 @@ export function PostPreview(props: { post: Post }) {
 
     return (
         <Link className="mb-4 group flex flex-col sm:flex-row" href={`/${slug}`}>
-            <div className="max-h-40 sm:w-48 sm:max-h-auto bg-black/20 overflow-y-hidden">
+            <div className="h-24 sm:w-48 sm:max-h-auto flex items-center justify-center bg-black/20 overflow-y-hidden">
                 {featureImage && (
                     <img src={featureImage.src} alt={featureImage.alt} />
                 )}
