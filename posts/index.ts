@@ -20,7 +20,7 @@ const entries = [
     const post = { Component, ...source } as Post;
 
     return [post.slug, post] as const;
-});
+}).reverse();
 
 export const PostsBySlug = Object.fromEntries(entries) as Record<string, Post>;
 
