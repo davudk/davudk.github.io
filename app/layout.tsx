@@ -21,7 +21,7 @@ export default function RootLayout(props: RootLayoutProps) {
 
   return (
     <html lang="en">
-      <body>
+      <body className="overflow-y-scroll">
         <div className="max-w-2xl min-h-screen mx-auto px-3 md:px-0 py-2 flex flex-col">
           <Navigation posts={Posts} />
           <main className="flex-grow">
