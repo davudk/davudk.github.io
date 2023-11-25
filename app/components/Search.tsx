@@ -55,12 +55,6 @@ export function Search(props: SearchProps) {
                                                 )}
                                             </div>
                                         </div>
-                                        // <Link href={`/${p.slug}`} className={'block px-4 py-2 ' + (active ? 'bg-slate-300' : '')}>
-                                        //     <div>{p.title}</div>
-                                        //     {p.excerpt && (
-                                        //         <div className="text-sm text-slate-600 truncate">{p.excerpt}</div>
-                                        //     )}
-                                        // </Link>
                                     )}
                                 </Combobox.Option>
                             ))}
