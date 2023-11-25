@@ -9,3 +9,11 @@ body {
 .lock-scroll {
   overflow-y: hidden !important;
 }
+
+[data-remark-code-title] {
+  @apply px-4 py-2 bg-sky-600/70 dark:bg-sky-500/30 text-white font-mono rounded-t-md;
+
+  &+.remark-highlight > pre {
+    @apply mt-0 rounded-t-none;
+  }
+}

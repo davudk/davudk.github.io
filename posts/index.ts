@@ -4,9 +4,10 @@ export interface Post {
     Component?: (props: any) => JSX.Element;
     slug: string;
     title: string;
-    excerpt: string;
     tags: string[];
+    excerpt: string;
     publishedDate: string;
+    modifiedDate?: string;
     featureImage?: {
         src: string;
         alt?: string;
@@ -16,8 +17,8 @@ export interface Post {
 const entries = [
     introduction
 ].map(raw => {
-    const { default: Component, ...source } = raw;
-    const post = { Component, ...source } as Post;
+    const { default: Component, metadata } = raw as any;
+    const post = { Component, ...metadata } as Post;
 
     return [post.slug, post] as const;
 }).reverse();

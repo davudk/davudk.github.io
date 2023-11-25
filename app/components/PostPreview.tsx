@@ -5,7 +5,7 @@ export function PostPreview(props: { post: Post }) {
     const { slug, title, excerpt, publishedDate, featureImage } = props.post;
 
     return (
-        <Link className="group flex flex-col sm:flex-row" href={`/${slug}`}>
+        <Link className="mb-4 group flex flex-col sm:flex-row" href={`/${slug}`}>
             <div className="max-h-40 sm:w-48 sm:max-h-auto bg-black/20 overflow-y-hidden">
                 {featureImage && (
                     <img src={featureImage.src} alt={featureImage.alt} />
