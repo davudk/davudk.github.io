@@ -88,9 +88,7 @@ Toolbar.Slider = function ToolbarSlider(props: ToolbarSliderProps) {
     const { max, onChange } = props;
 
     const min = props.min ?? 0;
-    if (max < min) return (
-        <div>Invalid options for slider.</div>
-    );
+    if (max < min) throw new Error('invalid properties specified to toolbar slider');
 
     const [value, setValue] = useState(props.value ?? min);
 
@@ -106,7 +104,7 @@ Toolbar.Slider = function ToolbarSlider(props: ToolbarSliderProps) {
             setValue(v);
             onChange(v);
         }
-    }, [value, min, max]);
+    }, [value, min, max, onChange]);
 
     const charLength = Math.max(min.toString().length, max.toString().length);
     const valueStr = value.toString().padStart(charLength, ' ');
