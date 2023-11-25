@@ -1,4 +1,5 @@
 import { Post } from "@/posts";
+import Image from "next/image";
 import Link from "next/link";
 
 export interface PostHeaderProps {
@@ -6,7 +7,7 @@ export interface PostHeaderProps {
 }
 
 export function PostHeader(props: PostHeaderProps) {
-    const { title, excerpt, tags, published, featureImage } = props.post;
+    const { title, excerpt, tags, publishedDate, featureImage } = props.post;
 
     return (
         <header>
@@ -14,7 +15,7 @@ export function PostHeader(props: PostHeaderProps) {
 
             <div className="!my-0 text-slate-600">
                 <Tags tags={tags} />
-                <time dateTime={published}>{published}</time>
+                <time dateTime={publishedDate}>{publishedDate}</time>
             </div>
 
             {excerpt && (
@@ -22,7 +23,7 @@ export function PostHeader(props: PostHeaderProps) {
             )}
 
             {featureImage && (
-                <img className="!mt-1" src={featureImage} />
+                <Image className="!mt-1" src={featureImage.src} alt={featureImage.alt ?? ''} />
             )}
 
         </header>

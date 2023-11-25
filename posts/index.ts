@@ -6,8 +6,11 @@ export interface Post {
     title: string;
     excerpt: string;
     tags: string[];
-    published: string;
-    featureImage: string;
+    publishedDate: string;
+    featureImage?: {
+        src: string;
+        alt?: string;
+    };
 }
 
 const entries = [
