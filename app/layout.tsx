@@ -20,8 +20,8 @@ export default function RootLayout(props: RootLayoutProps) {
   const { children } = props;
 
   return (
-    <html lang="en">
-      <body className="overflow-y-scroll">
+    <html lang="en" className="overflow-y-scroll">
+      <body>
         <div className="max-w-2xl min-h-screen mx-auto px-3 md:px-0 py-2 flex flex-col">
           <Navigation posts={Posts} />
           <main className="flex-grow">
