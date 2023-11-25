@@ -1,10 +1,11 @@
-import { Post, Posts } from "@/posts";
+import { Post, Posts } from "@/app/posts";
+import Link from "next/link";
 
 export function PostPreview(props: { post: Post }) {
     const { post } = props;
 
     return (
-        <a className="group flex flex-col sm:flex-row" href={`/${post.slug}`}>
+        <Link className="group flex flex-col sm:flex-row" href={`/${post.slug}`}>
             <div className="max-h-40 sm:w-48 sm:max-h-auto bg-slate-300">
                 {post.featureImage && (
                     <img src={post.featureImage} alt={post.title} />
@@ -16,6 +17,6 @@ export function PostPreview(props: { post: Post }) {
                 </div>
                 <p className="mt-1 text-sm text-slate-800 text-ellipsis line-clamp-3">{post.excerpt}</p>
             </div>
-        </a >
+        </Link>
     )
 }

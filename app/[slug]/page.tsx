@@ -1,8 +1,8 @@
-import { Posts } from '@/posts';
+import { Posts } from '@/app/posts';
 import { Post } from '../components/Post';
 
 export async function generateStaticParams() {
-  return Object.keys(Posts).map(slug => ({ slug }));
+  return Posts.map(({ slug }) => ({ slug }));
 }
 
 export default function PostPage(props: { params: { slug: string } }) {

@@ -1,5 +1,5 @@
 import { PostList } from '@/app/components/PostList';
-import { Posts } from '@/posts';
+import { Posts } from '@/app/posts';
 
 export async function generateStaticParams() {
     const tags = new Set<string>();
@@ -11,11 +11,11 @@ export async function generateStaticParams() {
 
 export default function TagPage(props: { params: { tag: string } }) {
     const { tag } = props.params;
-    const posts = Object.values(Posts).filter(p => p.tags.includes(tag));
+    const posts = Posts.filter(p => p.tags.includes(tag));
 
     return (
         <div>
-            <PostList posts={Object.values(Posts)} tag={tag} />
+            <PostList posts={posts} tag={tag} />
         </div>
     )
 }

@@ -1,4 +1,5 @@
-import { Post } from "@/posts";
+import { Post } from "@/app/posts";
+import Link from "next/link";
 
 export interface PostHeaderProps {
     post: Post
@@ -52,7 +53,7 @@ function Tags(props: { tags?: string[] }) {
             {tags.map((t, i) => (
                 <span key={t}>
                     {i > 0 && ", "}
-                    <a href={`/tag/${t}`}>{t}</a>
+                    <Link href={`/tag/${t}`}>{t}</Link>
                 </span>
             ))}
             &nbsp;&bull;&nbsp;
