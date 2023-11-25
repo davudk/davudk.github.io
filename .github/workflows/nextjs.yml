@@ -53,12 +53,6 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-      - name: Output next config
-        run: |
-          cat next.config.js
-          echo THEN
-          cat next.config.mjs
-          echo END
       - name: Restore cache
         uses: actions/cache@v3
         with:
