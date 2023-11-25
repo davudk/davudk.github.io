@@ -1,101 +1,25 @@
 export const slug = 'introduction';
 export const title = 'Introduction';
-export const tags = ['foo', 'abc', '123'];
-export const excerpt = 'Some info about myself';
+export const tags = ['General'];
+export const excerpt = 'Some info about myself and what I plan to do with this blog';
 export const publishedDate = '2023-11-24';
 export const featureImage = {
-    src: 'https://static.ghost.org/v4.0.0/images/feature-image.jpg',
-    alt: 'Sample alt'
+    src: 'https://images.unsplash.com/photo-1700819000381-5a5f14e5de3c?q=80&w=1920&h=1080&auto=format&fit=crop',
+    alt: 'Introduction (photo not relevant)'
 };
 
-Generate Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and discover plugins for your favorite writing, design and blogging tools. Explore the origins, history and meaning of the famous passage, and learn how Lorem Ipsum went
+So to introduce myself: my name is Davud.
+I'm a software engineer with experience in all parts of the development stack, but I have a preference for backend.
 
-This is Davud's blog, a brand new site by Davud Kaplan that's just getting started. Things will be up and running here shortly, but you can subscribe in the meantime if you'd like to stay up to date and receive emails when new content is published!
+As a kid I loved video games. This interest eventually sparked my interest in computers and how they work.
+I probably broke more computers and electronics as a kid than most people had.
 
-here's an example of a [link](https://www.google.com/) for reference.
+(In my defense, I was interested in breaking them apart to learn how they worked.)
 
-JSON example:
+I setup this blog so I'd have a place to share my thoughts about software and technology, as well as my thoughts about life.
 
-```json
-{
-  "arr": [1, 2, 3],
-  "obj": { "str": "some string" }
-}
-```
+I put together this site over the last couple days.
+I initially wanted to set it up on [Ghost](https://ghost.org/), but the pricing is high.
+Wordpress is more affordable, but I eventually settled on GitHub pages, which has no fees.
 
-HTML example:
-
-```html
-<!DOCTYPE html>
-<html>
-<body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-
-</body>
-</html>
-```
-
-Python example:
-
-```python
-# Sum of natural numbers up to num
-
-num = 16
-
-if num < 0:
-   print("Enter a positive number")
-else:
-   sum = 0
-   # use while loop to iterate until zero
-   while(num > 0):
-       sum += num
-       num -= 1
-   print("The sum is", sum)
-```
-
-
-Java example:
-
-```java
-public class Armstrong {
-
-    public static void main(String[] args) {
-
-        int low = 999, high = 99999;
-
-        for(int number = low + 1; number < high; ++number) {
-
-            if (checkArmstrong(number))
-                System.out.print(number + " ");
-        }
-    }
-
-    public static boolean checkArmstrong(int num) {
-        int digits = 0;
-        int result = 0;
-        int originalNumber = num;
-
-        // number of digits calculation
-        while (originalNumber != 0) {
-            originalNumber /= 10;
-            ++digits;
-        }
-
-        originalNumber = num;
-
-        // result contains sum of nth power of its digits
-        while (originalNumber != 0) {
-            int remainder = originalNumber % 10;
-            result += Math.pow(remainder, digits);
-            originalNumber /= 10;
-        }
-
-        if (result == num)
-            return true;
-
-        return false;
-    }
-}
-```
+I guess I'll post here once in a while.
