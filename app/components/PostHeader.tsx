@@ -1,5 +1,4 @@
 import { Post } from "@/posts";
-import Image from "next/image";
 import Link from "next/link";
 
 export interface PostHeaderProps {
@@ -23,7 +22,7 @@ export function PostHeader(props: PostHeaderProps) {
             )}
 
             {featureImage && (
-                <Image className="!mt-1" src={featureImage.src} alt={featureImage.alt ?? ''} />
+                <img className="!mt-1" src={featureImage.src} alt={featureImage.alt} />
             )}
 
         </header>

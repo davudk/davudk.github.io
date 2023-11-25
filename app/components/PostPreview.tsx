@@ -1,5 +1,4 @@
 import { Post } from "@/posts";
-import Image from "next/image";
 import Link from "next/link";
 
 export function PostPreview(props: { post: Post }) {
@@ -9,7 +8,7 @@ export function PostPreview(props: { post: Post }) {
         <Link className="group flex flex-col sm:flex-row" href={`/${slug}`}>
             <div className="max-h-40 sm:w-48 sm:max-h-auto bg-slate-300">
                 {featureImage && (
-                    <Image src={featureImage.src} alt={featureImage.alt ?? ''} />
+                    <img src={featureImage.src} alt={featureImage.alt} />
                 )}
             </div>
             <div className="mt-1 mb-3 sm:my-0 sm:ml-3 flex-1">
