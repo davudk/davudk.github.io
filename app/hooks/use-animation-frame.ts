@@ -21,5 +21,5 @@ export function useAnimationFrame(callback: (options: AnimationFrameHookOptions)
     useEffect(() => {
         requestRef.current = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(requestRef.current);
-    }, dep);
+    }, dep ?? []);
 }

@@ -55,7 +55,7 @@ export function Container(props: ContainerProps) {
     useEffect(() => {
         setTimeout(() => forceRender(), 10);
         setTimeout(() => forceRender(), 100);
-    }, [fullscreen]);
+    }, [fullscreen, forceRender]);
 
     const placeholder = (
         <div className="flex items-center justify-center bg-zinc-300"

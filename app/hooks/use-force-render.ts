@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export function useForceRender() {
     const [_, setState] = useState<any>();
-    return () => setState(Math.random());
+    const forceRender = useCallback(() => setState(Math.random()), []);
+    return forceRender;
 }
