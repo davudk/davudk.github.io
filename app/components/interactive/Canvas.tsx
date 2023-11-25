@@ -7,7 +7,7 @@ export type DefaultCanvasRenderer =
     (options: RenderOptions, interactiveContext: InteractiveContextOptions) => void;
 
 export function createDefaultCanvas(render: DefaultCanvasRenderer): (props: InteractiveChildrenProps) => ReactNode {
-    return ({ containerProps: { width, height }, context }) => {
+    return function DefaultCanvas({ containerProps: { width, height }, context }) {
         const { hasUserAttention, paused } = context;
         return (
             <Canvas width={width} height={height} render={p => hasUserAttention && !paused && render(p, context)} />
