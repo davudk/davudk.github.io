@@ -6,7 +6,7 @@ import rehypeSlug from 'rehype-slug';
 const withMDX = nextMDX({
     options: {
         remarkPlugins: [remarkCodeTitle, remarkPrism],
-        rehypePlugins: [rehypeSlug]
+        rehypePlugins: [rehypeSlug],
     }
 });
 
