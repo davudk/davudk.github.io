@@ -61,6 +61,12 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+      - name: Output next config
+        run: |
+          cat next.config.js
+          echo THEN
+          cat next.config.mjs
+          echo END
       - name: Restore cache
         uses: actions/cache@v3
         with:
