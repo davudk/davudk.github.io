@@ -102,12 +102,13 @@ export interface ToolbarButtonProps {
 
 Toolbar.Button = function ToolbarButton(props: ToolbarButtonProps) {
     const { children, disabled, keyboardShortcut, onClick } = props;
+    const ctx = useContext(InteractiveContext);
 
     useHotkeys([keyboardShortcut!].filter(Boolean), e => {
         e.preventDefault();
         onClick('keyboard-shortcut');
     }, {
-        enabled: true
+        enabled: ctx.hasUserAttention
     }, [keyboardShortcut, onClick]);
 
     return (

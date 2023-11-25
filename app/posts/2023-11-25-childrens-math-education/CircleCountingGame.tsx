@@ -1,6 +1,6 @@
 'use client';
-import { Canvas, RenderOptions } from "@/app/components/interactive/Canvas";
-import { Interactive } from "@/app/components/interactive/Interactive";
+import { Canvas, RenderOptions, createDefaultCanvas } from "@/app/components/interactive/Canvas";
+import { Interactive, InteractiveContextOptions } from "@/app/components/interactive/Interactive";
 import { Toolbar, ToolbarSelectOption } from "@/app/components/interactive/Toolbar";
 import { useCallback, useEffect, useState } from "react";
 import random from 'random';
@@ -29,7 +29,8 @@ function generateBunch(size: BunchSize): Circle[] {
         .map(() => generateCircle());
 }
 
-export function CircleCountingGame() {
+export function CircleCountingGame(props: { id: string }) {
+    const { id } = props;
 
     const bunchSizes: BunchSize[] = [[3, 5], [4, 6], [5, 8], [6, 10]]
         .map(([min, max]) => ({
@@ -49,7 +50,7 @@ export function CircleCountingGame() {
         resetBunch();
     }, [bunchSize]);
 
-    const render = useCallback((options: RenderOptions, step: number) => {
+    const render = useCallback((options: RenderOptions, interactiveContext: InteractiveContextOptions) => {
         const { ctx, width, height } = options;
         ctx.clearRect(0, 0, width, height);
 
@@ -85,10 +86,8 @@ export function CircleCountingGame() {
     )
 
     return (
-        <Interactive toolbar={toolbar} onReset={resetBunch}>
-            {({ containerProps: { width, height }, context: { currentStep, paused } }) => (
-                <Canvas width={width} height={height} render={p => paused || render(p, currentStep)} />
-            )}
+        <Interactive id={id} toolbar={toolbar} onReset={resetBunch}>
+            {createDefaultCanvas(render)}
         </Interactive>
     )
 }

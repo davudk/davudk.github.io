@@ -1,6 +1,19 @@
 'use client';
-import { useRef } from "react"
+import { ReactNode, useRef } from "react"
 import { useAnimationFrame } from "../../hooks/use-animation-frame";
+import { InteractiveChildrenProps, InteractiveContextOptions } from "./Interactive";
+
+export type DefaultCanvasRenderer =
+    (options: RenderOptions, interactiveContext: InteractiveContextOptions) => void;
+
+export function createDefaultCanvas(render: DefaultCanvasRenderer): (props: InteractiveChildrenProps) => ReactNode {
+    return ({ containerProps: { width, height }, context }) => {
+        const { hasUserAttention, paused } = context;
+        return (
+            <Canvas width={width} height={height} render={p => hasUserAttention && !paused && render(p, context)} />
+        )
+    };
+}
 
 export interface RenderOptions {
     canvas: HTMLCanvasElement;

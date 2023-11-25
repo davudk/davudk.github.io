@@ -1,10 +1,12 @@
 'use client';
 import { useCallback, useRef } from "react";
-import { Canvas, RenderOptions } from "../interactive/Canvas";
+import { Canvas, RenderOptions, createDefaultCanvas } from "../interactive/Canvas";
 import { Toolbar } from "../interactive/Toolbar";
 import { Interactive } from "../interactive/Interactive";
 
-export function Demo1() {
+export function Demo1(props: { id: string }) {
+    const { id } = props;
+
     const stateRef = useRef({
         angle: 0
     });
@@ -37,10 +39,8 @@ export function Demo1() {
     )
 
     return (
-        <Interactive toolbar={toolbar}>
-            {({ containerProps: { width, height }, context: { paused } }) => (
-                <Canvas width={width} height={height} render={p => paused || render(p)} />
-            )}
+        <Interactive id={id} toolbar={toolbar}>
+            {createDefaultCanvas(render)}
         </Interactive>
     )
 }

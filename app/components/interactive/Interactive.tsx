@@ -1,11 +1,12 @@
 'use client';
-import { ReactNode, createContext, useCallback, useEffect, useState } from "react"
-import { useHotkeys } from "react-hotkeys-hook";
+import { ReactNode, createContext, useCallback, useEffect, useMemo, useState } from "react"
 import { Container, ContainerChildrenProps } from "./Container";
+import { useInteractiveManager } from "./InteractiveManager";
 
 export const InteractiveContext = createContext<Readonly<InteractiveContextOptions>>(null as any);
 
 export interface InteractiveContextOptions {
+    hasUserAttention: boolean;
     currentStep: number;
     paused: boolean;
     fullscreen: boolean;
@@ -22,6 +23,7 @@ export interface InteractiveChildrenProps {
 }
 
 export interface InteractiveProps {
+    id: string;
     startPaused?: boolean;
     aspectRatio?: number;
     toolbar: ReactNode;
@@ -30,7 +32,9 @@ export interface InteractiveProps {
 }
 
 export function Interactive(props: InteractiveProps) {
-    const { startPaused, aspectRatio, toolbar, children, onReset } = props;
+    const { id, startPaused, aspectRatio, toolbar, children, onReset } = props;
+
+    const { isPrimary } = useInteractiveManager(id);
 
     const [currentStep, setCurrentStep] = useState(0);
     const [paused, setPaused] = useState(startPaused ?? false);
@@ -42,6 +46,7 @@ export function Interactive(props: InteractiveProps) {
     const toggleFullscreen = useCallback((newValue?: boolean) => setFullscreen(newValue ?? !fullscreen), [fullscreen]);
 
     const context: InteractiveContextOptions = {
+        hasUserAttention: isPrimary(),
         currentStep,
         paused,
         fullscreen,
@@ -58,14 +63,16 @@ export function Interactive(props: InteractiveProps) {
     }, [fullscreen]);
 
     return (
-        <InteractiveContext.Provider value={context}>
-            <Container fullscreen={fullscreen} aspectRatio={aspectRatio} toolbar={toolbar}>
-                {containerProps => (
-                    <div style={containerProps}>
-                        {children({ containerProps, context })}
-                    </div>
-                )}
-            </Container>
-        </InteractiveContext.Provider>
+        <div id={id}>
+            <InteractiveContext.Provider value={context}>
+                <Container fullscreen={fullscreen} aspectRatio={aspectRatio} toolbar={toolbar}>
+                    {containerProps => (
+                        <div style={containerProps}>
+                            {children({ containerProps, context })}
+                        </div>
+                    )}
+                </Container>
+            </InteractiveContext.Provider>
+        </div>
     )
 }

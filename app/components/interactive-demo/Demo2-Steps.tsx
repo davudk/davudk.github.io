@@ -1,14 +1,16 @@
 'use client';
 import { useCallback } from "react";
-import { Canvas, RenderOptions } from "../interactive/Canvas";
+import { Canvas, RenderOptions, createDefaultCanvas } from "../interactive/Canvas";
 import { Toolbar } from "../interactive/Toolbar";
-import { Interactive } from "../interactive/Interactive";
+import { Interactive, InteractiveContextOptions } from "../interactive/Interactive";
 
-export function Demo2() {
+export function Demo2(props: { id: string }) {
+    const { id } = props;
 
     const TotalSteps = 10;
 
-    const render = useCallback((options: RenderOptions, step: number) => {
+    const render = useCallback((options: RenderOptions, interactiveContext: InteractiveContextOptions) => {
+        const step = interactiveContext.currentStep;
         const { ctx, width, height } = options;
         ctx.clearRect(0, 0, width, height);
 
@@ -35,10 +37,8 @@ export function Demo2() {
     )
 
     return (
-        <Interactive toolbar={toolbar}>
-            {({ containerProps: { width, height }, context: { currentStep, paused } }) => (
-                <Canvas width={width} height={height} render={p => paused || render(p, currentStep)} />
-            )}
+        <Interactive id={id} toolbar={toolbar}>
+            {createDefaultCanvas(render)}
         </Interactive>
     )
 }
