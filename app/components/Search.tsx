@@ -4,7 +4,6 @@ import { Dialog, Combobox } from '@headlessui/react'
 import { performSearch } from "../util/search";
 import { Post } from "@/posts";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export interface SearchProps {
     posts: Post[];
@@ -30,7 +29,7 @@ export function Search(props: SearchProps) {
     }, [router, onClose]);
 
     return (
-        <Dialog className="relative z-50"
+        <Dialog className="relative z-10"
             open={open}
             onClose={() => onClose?.()}>
             <div className="fixed inset-0 bg-black/10" aria-hidden="true" />
