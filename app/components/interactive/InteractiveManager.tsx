@@ -11,7 +11,7 @@ interface Entry {
 const interactives = new Map<string, Entry>();
 let primaryInteractiveId: string | undefined = undefined;
 
-window.addEventListener('scroll', () => determinePrimaryInteractive());
+global.window?.addEventListener('scroll', () => determinePrimaryInteractive());
 
 export function isPrimaryInteractive(id: string) {
     return id === primaryInteractiveId;
