@@ -13,7 +13,7 @@ export interface ToolbarProps {
 export function Toolbar(props: ToolbarProps) {
     const { children } = props;
     return (
-        <div className="px-4 py-2 flex items-center gap-x-1 bg-neutral-200">
+        <div className="px-4 py-2 flex items-center gap-x-1 bg-neutral-200 dark:bg-black">
             {children}
         </div>
     )
