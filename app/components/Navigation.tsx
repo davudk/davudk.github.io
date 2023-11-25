@@ -26,7 +26,7 @@ export function Navigation(props: NavigationProps) {
                 </Link>
             </div>
 
-            <button className="group hidden sm:block text-slate-600 hover:text-current"
+            <button className="group hidden sm:block text-slate-600 dark:text-slate-200 hover:text-current"
                 onClick={() => setSearchIsOpen(!searchIsOpen)}>
                 <span className="group-hover:underline">Search</span>
                 &nbsp;&#x1F50D;

@@ -10,15 +10,15 @@ export function PostHeader(props: PostHeaderProps) {
 
     return (
         <header>
-            <h1 className="!my-1 text-4xl text-rose-800">{title}</h1>
+            <h1 className="!my-1 text-4xl text-current">{title}</h1>
 
-            <div className="!my-0 text-slate-600">
+            <div className="!my-0 opacity-80">
                 <Tags tags={tags} />
                 <time dateTime={publishedDate}>{publishedDate}</time>
             </div>
 
             {excerpt && (
-                <p className="!my-0 text-slate-800">{excerpt}</p>
+                <p className="!my-0 opacity-90">{excerpt}</p>
             )}
 
             {featureImage && (

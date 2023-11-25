@@ -26,7 +26,7 @@ export default function RootLayout(props: RootLayoutProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='' />
         <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
       </head>
-      <body>
+      <body className="dark:bg-neutral-800 dark:text-slate-100">
         <div className="max-w-2xl min-h-screen mx-auto px-3 md:px-0 py-2 flex flex-col">
           <Navigation posts={Posts} />
           <main className="flex-grow">

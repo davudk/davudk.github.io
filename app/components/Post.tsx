@@ -9,7 +9,8 @@ export function Post(props: { slug: string }) {
 
     return (
         <article>
-            <div className="prose prose-hr:my-6 prose-headings:my-3 prose-headings:font-normal prose-p:my-3 prose-img:my-3 prose-a:no-underline hover:prose-a:underline">
+            <div className="prose prose-hr:my-6 prose-headings:my-3 prose-headings:font-normal prose-p:my-3 prose-img:my-3 prose-a:no-underline hover:prose-a:underline
+                            dark:text-slate-200 prose-a:text-sky-600 dark:prose-a:text-rose-300">
                 <PostHeader post={post} />
                 <Component />
             </div>
