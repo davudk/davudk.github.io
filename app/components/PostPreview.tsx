@@ -1,4 +1,4 @@
-import { Post } from "@/app/posts";
+import { Post } from "@/posts";
 import Link from "next/link";
 
 export function PostPreview(props: { post: Post }) {

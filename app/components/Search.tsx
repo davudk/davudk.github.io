@@ -2,7 +2,7 @@
 import { useCallback, useMemo, useState } from "react"
 import { Dialog, Combobox } from '@headlessui/react'
 import { performSearch } from "../util/search";
-import { Post } from "@/app/posts";
+import { Post } from "@/posts";
 import { useRouter } from "next/navigation";
 import classNames from "classnames";
 
