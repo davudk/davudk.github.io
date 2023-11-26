@@ -5,6 +5,7 @@ import { Toolbar, ToolbarSelectOption } from "@/app/components/interactive/Toolb
 import { useCallback, useEffect, useState } from "react";
 import random from 'random';
 import { useStateRef } from "@/app/hooks/use-state-ref";
+import { prefersDarkMode } from "@/app/util/dark-mode";
 
 interface BunchSize extends ToolbarSelectOption {
     min: number;
@@ -54,9 +55,9 @@ export function CircleCountingGame(props: { id: string }) {
         const { ctx, width, height } = options;
         ctx.clearRect(0, 0, width, height);
 
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = prefersDarkMode() ? 'gray' : 'red';
+        ctx.strokeStyle = prefersDarkMode() ? 'white' : 'black';
         ctx.lineWidth = 4;
-        ctx.strokeStyle = 'black';
         for (let c of getBunch()) {
             const x = c.x * width;
             const y = c.y * height;

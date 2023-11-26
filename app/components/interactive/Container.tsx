@@ -2,6 +2,7 @@
 import { useWindowSize } from "@uidotdev/usehooks";
 import { ReactNode, useEffect, useRef } from "react"
 import { useForceRender } from "../../hooks/use-force-render";
+import classNames from "classnames";
 
 export const DefaultAspectRatio = 16 / 9;
 
@@ -58,7 +59,7 @@ export function Container(props: ContainerProps) {
     }, [fullscreen, forceRender]);
 
     const placeholder = (
-        <div className="flex items-center justify-center bg-zinc-300"
+        <div className="flex items-center justify-center outline-dashed outline-slate-300 dark:outline-slate-500"
             style={{
                 width: `${placeholderSizeRef.current.width}px`,
                 height: `${placeholderSizeRef.current.height}px`
@@ -71,10 +72,13 @@ export function Container(props: ContainerProps) {
         <div className="mt-4 mb-6">
             {fullscreen && placeholder}
             <div ref={rootRef}
-                className={'flex flex-col items-stretch bg-zinc-300 outline-dashed outline-slate-300 ' +
-                    (fullscreen ? 'fixed inset-0 z-30' : '')}>
+                className={classNames(
+                    'flex flex-col items-stretch',
+                    'outline-dashed outline-slate-300 dark:outline-slate-500',
+                    fullscreen && 'fixed inset-0 z-30'
+                )}>
 
-                <div className="bg-white">
+                <div>
                     {toolbar}
                 </div>
 

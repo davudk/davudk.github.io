@@ -79,9 +79,10 @@ Toolbar.Select = function ToolbarSelect(props: ToolbarSelectProps) {
                             disabled={x.disabled}
                         >
                             {({ active }) => (
-                                <div className={classNames("px-2 py-1 cursor-pointer", {
-                                    "bg-slate-100 dark:bg-white/10 outline-dashed outline-2 outline-slate-600 dark:outline-white/40": active
-                                })}>
+                                <div className={classNames(
+                                    'px-2 py-1 cursor-pointer',
+                                    active && 'bg-slate-100 dark:bg-white/10 outline-dashed outline-2 outline-slate-600 dark:outline-white/40'
+                                )}>
                                     {x.text ?? x.value}
                                 </div>
                             )}

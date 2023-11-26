@@ -48,6 +48,6 @@ export function Canvas(props: CanvasProps) {
             tabIndex={0}
             width={width} height={height}
             style={{ width: `${width}px`, height: `${height}px` }}
-            className="outline-none bg-white" />
+            className="outline-none bg-white dark:bg-neutral-800" />
     )
 }
