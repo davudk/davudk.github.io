@@ -63,7 +63,7 @@ export function Interactive(props: InteractiveProps) {
     }, [fullscreen]);
 
     return (
-        <div id={id}>
+        <div id={id} className="select-none">
             <InteractiveContext.Provider value={context}>
                 <Container fullscreen={fullscreen} aspectRatio={aspectRatio} toolbar={toolbar}>
                     {containerProps => (
