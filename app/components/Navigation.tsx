@@ -1,31 +1,21 @@
-'use client'
+'use client';
 import Link from "next/link";
 import { useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook";
 import { Post } from "@/posts";
 import { Search } from "./Search";
-import { useTheme } from "../hooks/use-theme";
+import dynamic from "next/dynamic";
+// import { NavigationThemeSwitch } from "./Navigation.ThemeSwitch";
+
+// I did this because the standard import was causing a nextjs error (probably a bug)
+const NavigationThemeSwitch = dynamic(() =>
+    import('./Navigation.ThemeSwitch').then(x => x.NavigationThemeSwitch), { ssr: false });
 
 export interface NavigationProps {
     posts: Post[];
 }
 
 export function Navigation(props: NavigationProps) {
-    const [theme, setTheme] = useTheme();
-    const themeChoices = [
-        { value: 'light', icon: '☀️', text: 'Light' }, // &#x2600;&#xFE0F;
-        { value: 'dark', icon: '🌑', text: 'Dark' }, // &#x1F311;
-        { value: 'auto', icon: '🖥️', text: 'System' }, // &#x1F5A5;&#xFE0F;
-    ] as const;
-    const selectedThemeChoiceIndex = themeChoices.findIndex(x => x.value === theme) ?? 0;
-    const nextThemeValue = themeChoices[(selectedThemeChoiceIndex + 1) % themeChoices.length].value;
-    // const themeOptions: SelectOption[] = [
-    //     { value: 'light', text: '☀️ Light' }, // &#x2600;&#xFE0F;
-    //     { value: 'dark', text: '🌑 Dark' }, // &#x1F311;
-    //     { value: 'auto', text: '🖥️ System' }, // &#x1F5A5;&#xFE0F;
-    // ]
-
-
     const [searchIsOpen, setSearchIsOpen] = useState(false);
 
     useHotkeys('/', e => {
@@ -44,12 +34,7 @@ export function Navigation(props: NavigationProps) {
             </div>
 
             {/* Dark/light mode */}
-            <button className="group text-slate-600 dark:text-slate-200 hover:text-current"
-                onClick={() => setTheme(nextThemeValue)}>
-                <span>{themeChoices[selectedThemeChoiceIndex].icon}</span>
-                &nbsp;
-                <span className="hidden sm:inline group-hover:underline">{themeChoices[selectedThemeChoiceIndex].text}</span>
-            </button>
+            <NavigationThemeSwitch />
 
             {/* Search */}
             <button className="group text-slate-600 dark:text-slate-200 hover:text-current"

@@ -1,4 +1,5 @@
-'use client'
+"use client"
+
 import { useCallback } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
@@ -32,7 +33,7 @@ export function useTheme() {
         html.classList.add(v);
 
         setThemeValue(v);
-    }, []);
+    }, [setThemeValue]);
 
     return [theme, setTheme] as const;
 }
