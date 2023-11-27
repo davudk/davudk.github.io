@@ -10,8 +10,9 @@ export function useAnimationFrame(callback: (options: AnimationFrameHookOptions)
     const previousTimeRef = useRef(0);
 
     const animate = (timestamp: DOMHighResTimeStamp) => {
+        timestamp /= 1000;
         if (previousTimeRef.current != undefined) {
-            const elapsedTime = (timestamp - previousTimeRef.current) / 1000;
+            const elapsedTime = timestamp - previousTimeRef.current;
             callback({ timestamp, elapsedTime });
         }
         previousTimeRef.current = timestamp;

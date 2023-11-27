@@ -18,6 +18,7 @@ export function createDefaultCanvas(render: DefaultCanvasRenderer): (props: Inte
 export interface RenderOptions {
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
+    currentTime: number;
     elapsedTime: number;
     width: number;
     height: number;
@@ -34,19 +35,21 @@ export function Canvas(props: CanvasProps) {
 
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-    useAnimationFrame(({ elapsedTime }) => {
+    useAnimationFrame(({ timestamp: currentTime, elapsedTime }) => {
         const { current: canvas } = canvasRef;
         const ctx = canvas?.getContext('2d');
         if (!canvas || !ctx) return;
 
         const { width, height } = canvas;
-        render({ canvas, ctx, elapsedTime, width, height });
+        render({ canvas, ctx, currentTime, elapsedTime, width, height });
     }, [render]);
+
+    const deviceScale = window.devicePixelRatio ?? 1;
 
     return (
         <canvas ref={canvasRef}
             tabIndex={0}
-            width={width} height={height}
+            width={width * deviceScale} height={height * deviceScale}
             style={{ width: `${width}px`, height: `${height}px` }}
             className="outline-none bg-white dark:bg-neutral-800" />
     )

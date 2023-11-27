@@ -1,11 +1,12 @@
 'use client';
-import { Canvas, RenderOptions, createDefaultCanvas } from "@/app/components/interactive/Canvas";
+import { RenderOptions, createDefaultCanvas } from "@/app/components/interactive/Canvas";
 import { Interactive, InteractiveContextOptions } from "@/app/components/interactive/Interactive";
 import { Toolbar, ToolbarSelectOption } from "@/app/components/interactive/Toolbar";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import random from 'random';
 import { useStateRef } from "@/app/hooks/use-state-ref";
 import { prefersDarkMode } from "@/app/util/dark-mode";
+import { useStopwatch } from "@/app/hooks/use-stopwatch";
 
 interface BunchSize extends ToolbarSelectOption {
     min: number;
@@ -43,7 +44,10 @@ export function CircleCountingGame(props: { id: string }) {
     const [getBunchSize, setBunchSize, bunchSize] = useStateRef(bunchSizes[0]);
     const [getBunch, setBunch] = useStateRef(() => generateBunch(bunchSize));
 
+    const { restart: restartStopwatch, getElapsedTime } = useStopwatch();
+
     const resetBunch = useCallback(() => {
+        restartStopwatch();
         setBunch(generateBunch(getBunchSize()));
     }, []);
 
@@ -67,6 +71,13 @@ export function CircleCountingGame(props: { id: string }) {
             ctx.fill();
             ctx.closePath();
         }
+
+        const elapsedTime = Math.round(getElapsedTime());
+        const elapsedTimeStr = elapsedTime > 60 ? '>60' : elapsedTime;
+
+        ctx.font = '20px normal monospaced';
+        ctx.fillStyle = prefersDarkMode() ? 'white' : 'black';
+        ctx.fillText(`Elapsed time: ${elapsedTimeStr}s`, 8, height - 12);
     }, []);
 
 
