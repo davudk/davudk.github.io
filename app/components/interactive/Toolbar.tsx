@@ -71,7 +71,7 @@ Toolbar.Select = function ToolbarSelect(props: ToolbarSelectProps) {
                 <Listbox.Button className="px-2 shadow-sm outline-none bg-white dark:bg-black">
                     {selected?.text ?? selected?.value ?? 'None selected'}
                 </Listbox.Button>
-                <Listbox.Options className="absolute top-full left-0 w-32 m-0 p-0 list-none shadow outline-none bg-white dark:bg-black">
+                <Listbox.Options className="z-30 absolute top-full left-0 w-32 m-0 p-0 list-none shadow outline-none bg-white dark:bg-black">
                     {options.map((x) => (
                         <Listbox.Option className="m-0 p-0"
                             key={x.value}
