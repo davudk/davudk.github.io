@@ -55,7 +55,7 @@ export function CircleCountingGame(props: { id: string }) {
         const { ctx, width, height } = options;
         ctx.clearRect(0, 0, width, height);
 
-        ctx.fillStyle = prefersDarkMode() ? 'gray' : 'red';
+        ctx.fillStyle = prefersDarkMode() ? 'darkblue' : 'red';
         ctx.strokeStyle = prefersDarkMode() ? 'white' : 'black';
         ctx.lineWidth = 4;
         for (let c of getBunch()) {
