@@ -44,7 +44,7 @@ export function Canvas(props: CanvasProps) {
         render({ canvas, ctx, currentTime, elapsedTime, width, height });
     }, [render]);
 
-    const deviceScale = window.devicePixelRatio ?? 1;
+    const deviceScale = globalThis.devicePixelRatio ?? 1;
 
     return (
         <canvas ref={canvasRef}
