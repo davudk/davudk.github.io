@@ -1,5 +1,5 @@
+'use client'
 import { useCallback } from "react";
-import { useStateRef } from "./use-state-ref";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 const ThemeKey = 'theme';
