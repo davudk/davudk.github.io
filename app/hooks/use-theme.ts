@@ -16,23 +16,26 @@ export function getThemeValue(): ThemeType {
 export function isDarkMode(): boolean {
     let v = getThemeValue();
     if (v === 'auto') {
-        if (window.matchMedia
-            && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches) {
             v = 'dark';
         }
     }
     return v === 'dark';
 }
 
+export function refreshTheme() {
+    const v = getThemeValue();
+    const html = globalThis.document.documentElement;
+    html.classList.remove('light', 'dark', 'auto');
+    html.classList.add(v);
+}
+
 export function useTheme() {
     const [theme, setThemeValue] = useLocalStorage<ThemeType>(ThemeKey, ThemeDefault);
 
     const setTheme = useCallback((v: ThemeType) => {
-        const html = globalThis.document.documentElement;
-        html.classList.remove('light', 'dark', 'auto');
-        html.classList.add(v);
-
         setThemeValue(v);
+        refreshTheme();
     }, [setThemeValue]);
 
     return [theme, setTheme] as const;
