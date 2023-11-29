@@ -24,10 +24,12 @@ export function isDarkMode(): boolean {
 }
 
 export function refreshTheme() {
-    const v = getThemeValue();
-    const html = globalThis.document.documentElement;
-    html.classList.remove('light', 'dark', 'auto');
-    html.classList.add(v);
+    if (globalThis.window) {
+        const v = getThemeValue();
+        const html = globalThis.document.documentElement;
+        html.classList.remove('light', 'dark', 'auto');
+        html.classList.add(v);
+    }
 }
 
 export function useTheme() {
