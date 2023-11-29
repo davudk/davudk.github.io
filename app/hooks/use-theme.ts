@@ -9,8 +9,12 @@ const ThemeDefault: ThemeType = 'auto';
 export type ThemeType = 'light' | 'dark' | 'auto';
 
 export function getThemeValue(): ThemeType {
-    return globalThis.localStorage.getItem(ThemeKey) as ThemeType
-        ?? ThemeDefault;
+    let v = globalThis.localStorage.getItem(ThemeKey) as ThemeType;
+    if (v) {
+        v = JSON.parse(v);
+    }
+    return v ?? ThemeDefault;
+
 }
 
 export function isDarkMode(): boolean {
