@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 const ThemeKey = 'theme';
@@ -40,3 +40,5 @@ export function useTheme() {
 
     return [theme, setTheme] as const;
 }
+
+refreshTheme();
