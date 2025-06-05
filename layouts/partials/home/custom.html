@@ -1,8 +1,8 @@
 {{ $disableImageOptimization := .Site.Params.disableImageOptimization | default false }}
 <article>
   <header class="mt-10 mb-10 max-w-prose prose dark:prose-invert">
-    Passionate about using technology, education, and faith to create meaningful impact.<br/>
-    Sharing reflections and ideas at the intersection of purpose, productivity, and service.
+    {{ .Site.Params.Author.headline | markdownify }}<br/>
+    {{ .Site.Params.Author.bio | markdownify }}
   </header>
 </article>
 <section>
