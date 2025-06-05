@@ -1,0 +1,21 @@
+disabled = false
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "Davud Kaplan"
+
+[params]
+displayName = "EN"
+isoCode = "en"
+rtl = false
+dateFormat = "2 January 2006"
+logo = "."
+description = "SampleDescription"
+
+[[params.author.links]]
+linkedin = "https://www.linkedin.com/in/davudk"
+
+["params.author"]
+name = "Davud Kaplan"
+headline = "SampleHeadline"
+bio = "SampleBio"

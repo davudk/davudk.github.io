@@ -1,0 +1,10 @@
+baseURL = 'https://davud.com/'
+languageCode = 'en-us'
+title = 'Davud Kaplan'
+copyright = '© 2025 Davud Kaplan'
+DisableHugoGeneratorInject = true
+
+[params]
+  [params.author]
+    email = 'blog@davud.com'
+    name = 'Davud Kaplan'
