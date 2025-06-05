@@ -8,3 +8,7 @@ DisableHugoGeneratorInject = true
   [params.author]
     email = 'blog@davud.com'
     name = 'Davud Kaplan'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
