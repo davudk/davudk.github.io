@@ -25,7 +25,7 @@ layout = "basic"
 showMenu = false
 showCopyright = true
 showThemeAttribution = true
-showAppearanceSwitcher = false
+showAppearanceSwitcher = true
 showScrollToTop = true
 
 [homepage]
